@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+}
+
+nav {
+    background-color: #1a1a1a;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1a1a1a;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+/* Add more styles and customization as needed */
+
+/* Previous styles remain unchanged */
+
+main {
+    padding: 40px;
+}
+
+.title-cards {
+    background-color: #101010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.title-card {
+    margin: 20px;
+    text-align: center;
+}
+
+.title-card a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.title-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title-card h2 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Hover effect */
+.title-card:hover img {
+    transform: scale(1.1);
+}
+
+
