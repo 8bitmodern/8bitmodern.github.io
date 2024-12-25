@@ -1,0 +1,42 @@
+services:
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80' # HTTP
+      - '443:443' # HTTPS
+      - '81:81' # Nginx Proxy Manager GUI
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s
+
+  ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    # network_mode: host # This bypasses network isolation and makes IPv6 easier (optional; see below)
+    restart: unless-stopped
+    user: "1000:1000" # Run the updater with specific user and group IDs (in that order).
+    read_only: true # Make the container filesystem read-only (optional but recommended)
+    cap_drop: [all] # Drop all Linux capabilities (optional but recommended)
+    security_opt: [no-new-privileges:true] # Another protection to restrict superuser privileges (optional but recommended)
+    environment:
+      - CLOUDFLARE_API_TOKEN=JsejRyoflC1msATslbZr0bMbwzhRE5fvqzJOLAyq
+      - DOMAINS=8-bit-modern.com,bitflix.8-bit-modern.com
+      - PROXIED=true
+      - IP6_PROVIDER=none
+
+# For testing the proxy
+  helloworld:
+    image: 'karthequian/helloworld:latest'
+    container_name: helloworld
+    restart: unless-stopped
+    ports:
+      - 8888:80/tcp
+      
+volumes:
+  data:
+  letsencrypt:
